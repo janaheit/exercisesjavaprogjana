@@ -1,5 +1,3 @@
-package be.abis.courseadmin;
-
 import java.util.Scanner;
 
 public class Welcome {
