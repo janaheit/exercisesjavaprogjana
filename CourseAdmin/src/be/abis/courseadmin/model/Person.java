@@ -2,7 +2,7 @@ package be.abis.courseadmin.model;
 
 import be.abis.courseadmin.enums.Gender;
 import be.abis.courseadmin.util.StringUtils;
-
+// SImon was here :D no html luckily
 /** This class represents a Person and describes a person's behaviour. */
 public class Person implements Instructor, CourseParticipant {
 
