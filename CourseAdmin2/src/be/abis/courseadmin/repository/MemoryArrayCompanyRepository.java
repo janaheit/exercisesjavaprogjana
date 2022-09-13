@@ -49,4 +49,8 @@ public class MemoryArrayCompanyRepository implements CompanyRepository {
     public void deleteCompany(int id) {
 
     }
+
+    public Company[] getCompanies() {
+        return companies;
+    }
 }
