@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"be.abis.courseadmin.model"},{"l":"be.abis.courseadmin.test"}];updateSearchResults();
