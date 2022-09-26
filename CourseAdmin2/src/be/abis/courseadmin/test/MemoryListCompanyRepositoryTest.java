@@ -2,26 +2,24 @@ package be.abis.courseadmin.test;
 
 import be.abis.courseadmin.exceptions.CompanyNotFoundException;
 import be.abis.courseadmin.model.Company;
-import be.abis.courseadmin.repository.MemoryArrayCompanyRepository;
+import be.abis.courseadmin.repository.MemoryListCompanyRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MemoryArrayCompanyRepositoryTest {
+class MemoryListCompanyRepositoryTest {
 
-    MemoryArrayCompanyRepository repo;
-    /**
-    public ExpectedException thrown = ExpectedException.none();*/
+    MemoryListCompanyRepository repo;
 
     @BeforeEach
     void setUp() {
-        repo = new MemoryArrayCompanyRepository();
+        repo = new MemoryListCompanyRepository();
     }
 
     @Test
     void checkIfSizeIs5(){
-        int len = repo.getCompanies().length;
+        int len = repo.getCompanies().size();
         assertEquals(5, len);
     }
 
@@ -43,10 +41,12 @@ class MemoryArrayCompanyRepositoryTest {
             repo.findCompany(7);
         });
 
-        // String expectedMessage = "This company does not exist.";
-        //String actualMessage = exception.getMessage();
+        // to check also the message
 
-        //assertTrue(actualMessage.contains(expectedMessage));
+        String expectedMessage = "This company does not exist.";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
 
 
     }

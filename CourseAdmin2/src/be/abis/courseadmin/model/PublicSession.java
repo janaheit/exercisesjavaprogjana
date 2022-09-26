@@ -2,11 +2,18 @@ package be.abis.courseadmin.model;
 
 import be.abis.courseadmin.exceptions.CompanyNotFoundException;
 import be.abis.courseadmin.repository.CompanyRepository;
-import be.abis.courseadmin.repository.MemoryArrayCompanyRepository;
+import be.abis.courseadmin.repository.MemoryListCompanyRepository;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public class PublicSession extends Session {
-    private CompanyRepository repository = new MemoryArrayCompanyRepository();
+    private CompanyRepository repository = new MemoryListCompanyRepository();
     private Company abis;     // so that ABIS is initialised once and not changeable
+    private List<CourseParticipant> participants = new ArrayList<>();
+
 
     public PublicSession(Course course, String startDate, Company location, Person instructor) {
         super(course, startDate, location, instructor);
@@ -23,6 +30,49 @@ public class PublicSession extends Session {
         return 700.0;
     }
 
+    public void addEnrolment(CourseParticipant participant){
+        participants.add(participant);
+    }
+
+    public void addEnrolments(CourseParticipant ... participants){
+        this.participants.addAll(Arrays.asList(participants));
+    }
+
+    public void cancelEnrolment(CourseParticipant courseParticipant){
+        participants.remove(courseParticipant);
+    }
+
+    public void printParticipants(){
+        for (CourseParticipant cp: this.participants) {
+            System.out.println(cp);
+        }
+    }
+
+    public List<CourseParticipant> findAbisParticipants(){
+        List<CourseParticipant> abisParticipants = new ArrayList<>();
+        for (CourseParticipant cp: this.participants) {
+            if (cp instanceof Person) {
+                if(((Person) cp).getCompany().getName().equals("ABIS")) {
+                    abisParticipants.add(cp);
+                }
+            }
+        }
+        return abisParticipants;
+    }
+
+    public void removeAbisParticipants(){
+
+        Iterator<CourseParticipant> iter = this.participants.iterator();
+
+        while(iter.hasNext()){
+            CourseParticipant cp = iter.next();
+            if (((Person)cp).getCompany().getName().equals("ABIS")){
+                iter.remove();
+            }
+        }
+
+        //this.participants.removeIf(cp -> ((Person) cp).getCompany().getName().equals("ABIS"));
+    }
 
     // Getters and setters
     @Override

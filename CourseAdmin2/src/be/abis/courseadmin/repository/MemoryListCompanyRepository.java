@@ -3,17 +3,18 @@ package be.abis.courseadmin.repository;
 import be.abis.courseadmin.exceptions.CompanyNotFoundException;
 import be.abis.courseadmin.model.Company;
 
-public class MemoryArrayCompanyRepository implements CompanyRepository {
-    private Company[] companies = new Company[5];
+import java.util.ArrayList;
+import java.util.List;
 
-    public MemoryArrayCompanyRepository(){
-        Company c1 = new Company("ABIS", 1);
-        Company c2 = new Company("Smals", 2);
-        Company c3 = new Company("Google", 3);
-        Company c4 = new Company("IBM", 4);
-        Company c5 = new Company("Microsoft", 5);
+public class MemoryListCompanyRepository implements CompanyRepository {
+    private List<Company> companies = new ArrayList<>();
 
-        companies = new Company[]{c1,c2,c3,c4,c5};
+    public MemoryListCompanyRepository(){
+        companies.add(new Company("ABIS", 1));
+        companies.add(new Company("Smals", 2));
+        companies.add(new Company("Google", 3));
+        companies.add(new Company("IBM", 4));
+        companies.add(new Company("Microsoft", 5));
     }
 
     @Override
@@ -38,7 +39,7 @@ public class MemoryArrayCompanyRepository implements CompanyRepository {
 
     @Override
     public void addCompany(Company company) {
-
+        this.companies.add(company);
     }
 
     @Override
@@ -48,10 +49,10 @@ public class MemoryArrayCompanyRepository implements CompanyRepository {
 
     @Override
     public void deleteCompany(int id) {
-
+        this.companies.removeIf(c -> c.getCompanyNumber() == id);
     }
 
-    public Company[] getCompanies() {
+    public List<Company> getCompanies() {
         return companies;
     }
 }

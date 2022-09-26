@@ -2,25 +2,23 @@ package be.abis.courseadmin.model;
 
 import be.abis.courseadmin.enums.Gender;
 import be.abis.courseadmin.util.StringUtils;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 // SImon was here :D no html luckily
 // test
 
 /** This class represents a Person and describes a person's behaviour. */
 public class Person implements Instructor, CourseParticipant {
 
-    /** name field: a person's first name */
     private String firstName;
-    /** name field: a person's last name */
     private String lastName;
-    /** company field: a person's workplace */
     private Company company;
-    /** hobby field: a person's hobbies in an array */
-    private String[] hobbies;
-    /** counter field: static field that counts the amount of persons created */
     private static int counter = 0;
-    /** personNumber field: a unique number of each person */
     private int personNumber;
     private Gender gender;
+    private Set<String> hobbies = new HashSet<>();
 
     public Person(){
     }
@@ -36,7 +34,7 @@ public class Person implements Instructor, CourseParticipant {
 
     public Person(String firstName, String lastName, Gender gender, String[] hobbies){
         this(firstName, lastName, gender);
-        this.hobbies = hobbies;
+        this.hobbies.addAll(Arrays.asList(hobbies));
     }
 
     public Person(String firstName, String lastName, Gender gender, String[] hobbies, Company company){
@@ -51,23 +49,16 @@ public class Person implements Instructor, CourseParticipant {
     }
 
     public void addHobby(String hobby){
-        String[] newHobbies = new String[hobbies.length+1];
-        for (int x = 0; x < hobbies.length; x++){
-            newHobbies[x] = hobbies[x];
-        }
-        newHobbies[hobbies.length] = hobby;
-        hobbies = newHobbies;
+        this.hobbies.add(hobby);
     }
 
     public void addHobbies(String... values){
-        for (int x = 0; x < values.length; x++){
-            addHobby(values[x]);
+        for (String value : values) {
+            addHobby(value);
         }
     }
     public void printHobbies(){
-        for (int x = 0; x < hobbies.length; x++){
-            System.out.println(hobbies[x]);
-        }
+        System.out.println(hobbies);
     }
 
     /**public void printInfo(){
@@ -101,13 +92,10 @@ public class Person implements Instructor, CourseParticipant {
 
     // Getters and setters
 
-    public String[] getHobbies() {
+    public Set<String> getHobbies() {
         return hobbies;
     }
 
-    public void setHobbies(String[] hobbies) {
-        this.hobbies = hobbies;
-    }
 
     public String getFirstName() {
         return firstName;

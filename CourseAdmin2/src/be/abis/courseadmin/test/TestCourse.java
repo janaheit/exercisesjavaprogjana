@@ -3,16 +3,15 @@ package be.abis.courseadmin.test;
 import be.abis.courseadmin.enums.Gender;
 import be.abis.courseadmin.exceptions.CompanyNotFoundException;
 import be.abis.courseadmin.exceptions.PriceException;
-import be.abis.courseadmin.exceptions.PriceTooHighException;
 import be.abis.courseadmin.model.*;
 import be.abis.courseadmin.repository.CompanyRepository;
-import be.abis.courseadmin.repository.MemoryArrayCompanyRepository;
+import be.abis.courseadmin.repository.MemoryListCompanyRepository;
 import be.abis.courseadmin.util.StringUtils;
 
 public class TestCourse {
     public static void main(String[] args) {
 
-        CompanyRepository repository = new MemoryArrayCompanyRepository();
+        CompanyRepository repository = new MemoryListCompanyRepository();
 
         Course course1 = new Course("java", 80, 50);
         Course course2 = new Course("oop", 4, 5);
@@ -118,6 +117,14 @@ public class TestCourse {
         } finally {
             System.out.println("finally entered");
         }
+
+        /** ----------------------Collections --------------------------------------*/
+
+
+        person1.addHobby("skating");
+        person1.printHobbies();
+
+
 
 
     }
