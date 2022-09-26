@@ -17,13 +17,18 @@ public class PublicSession extends Session {
         }
     }
 
+    // Business methods
+    @Override
+    public double calculatePrice() {
+        return 700.0;
+    }
+
+
+    // Getters and setters
     @Override
     public Company getOrganiser() {
         return abis;
     }
 
-    @Override
-    public double calculatePrice() {
-        return 700.0;
-    }
+
 }

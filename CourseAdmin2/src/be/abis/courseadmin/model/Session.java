@@ -18,6 +18,15 @@ public abstract class Session extends Service {
         this.instructor = instructor;
     }
 
+    // business methods
+
+    public void printInfo(){
+        System.out.println("The " + course.getTitle() + " will start on " + startDate
+                + ". It will take place at " + location.getName() + ". Your instructor is "
+                + instructor.getFirstName() + " " + instructor.getLastName() + " of " + instructor.getCompany().getName());
+    }
+
+    // getters and setters
 
     public Course getCourse() {
         return course;
@@ -53,9 +62,5 @@ public abstract class Session extends Service {
 
     public abstract Company getOrganiser();
 
-    public void printInfo(){
-        System.out.println("The " + course.getTitle() + " will start on " + startDate
-                + ". It will take place at " + location.getName() + ". Your instructor is "
-                + instructor.getFirstName() + " " + instructor.getLastName() + " of " + instructor.getCompany().getName());
-    }
+
 }

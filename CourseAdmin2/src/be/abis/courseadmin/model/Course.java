@@ -16,6 +16,24 @@ public class Course {
         this.pricePerDay = pricePerDay;
     }
 
+    // business methods
+
+    public int calculateTotalPrice(){
+        return numOfDays*pricePerDay;
+    }
+
+    public double calculateTotalPrice(double discountPercentage){
+        double totalPrice = numOfDays*pricePerDay;
+        return totalPrice * (1-(discountPercentage/100));
+    }
+
+    @Override
+    public String toString() {
+        return "This course " + title + " has a duration of " + numOfDays + " days and costs " + pricePerDay + "euros per day.";
+    }
+
+    // getters and setters
+
     public String getTitle() {
         return title;
     }
@@ -40,21 +58,5 @@ public class Course {
         this.pricePerDay = pricePerDay;
     }
 
-    public int calculateTotalPrice(){
-        return numOfDays*pricePerDay;
-    }
 
-    public double calculateTotalPrice(double discountPercentage){
-        double totalPrice = numOfDays*pricePerDay;
-        return totalPrice * (1-(discountPercentage/100));
-    }
-
-    /**public void printInfo(){
-        System.out.println("This course " + title + " has a duration of " + numOfDays + " and costs " + pricePerDay + " euros per day");
-    }*/
-
-    @Override
-    public String toString() {
-        return "This course " + title + " has a duration of " + numOfDays + " days and costs " + pricePerDay + "euros per day.";
-    }
 }

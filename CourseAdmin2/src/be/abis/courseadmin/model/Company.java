@@ -29,6 +29,11 @@ public class Company {
         return 0;
     }
 
+    @Override
+    public String toString() {
+        return "This company is called " + name;
+    }
+
     // getters and setters
 
     public int getCompanyNumber() {
@@ -47,12 +52,6 @@ public class Company {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "This company is called " + name;
-    }
 
-    /**public void printInfo(){
-        System.out.println("This company is called " + name);
-    }*/
+
 }

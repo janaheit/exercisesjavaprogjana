@@ -23,13 +23,7 @@ public class CompanySession extends Session {
         this.numOfParticipants = numOfParticipants;
     }
 
-    public int getNumOfParticipants() {
-        return numOfParticipants;
-    }
-
-    public void setNumOfParticipants(int numOfParticipants) {
-        this.numOfParticipants = numOfParticipants;
-    }
+    // business methods
 
     public void printInfo(){
         super.printInfo();
@@ -39,10 +33,6 @@ public class CompanySession extends Session {
         }
     }
 
-    @Override
-    public Company getOrganiser() {
-        return organiser;
-    }
 
     @Override
     public double calculatePrice() throws PriceTooHighException, PriceTooLowException {
@@ -55,5 +45,20 @@ public class CompanySession extends Session {
 
         }
         return totalPrice;
+    }
+
+    // getters and setters
+
+    @Override
+    public Company getOrganiser() {
+        return organiser;
+    }
+
+    public int getNumOfParticipants() {
+        return numOfParticipants;
+    }
+
+    public void setNumOfParticipants(int numOfParticipants) {
+        this.numOfParticipants = numOfParticipants;
     }
 }

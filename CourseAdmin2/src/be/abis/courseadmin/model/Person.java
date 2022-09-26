@@ -44,6 +44,63 @@ public class Person implements Instructor, CourseParticipant {
         this.company = company;
     }
 
+    // Business methods
+
+    public void attendCourse(Course course){
+        System.out.println(firstName + " is attending a "+ course.getTitle() + " course.");
+    }
+
+    public void addHobby(String hobby){
+        String[] newHobbies = new String[hobbies.length+1];
+        for (int x = 0; x < hobbies.length; x++){
+            newHobbies[x] = hobbies[x];
+        }
+        newHobbies[hobbies.length] = hobby;
+        hobbies = newHobbies;
+    }
+
+    public void addHobbies(String... values){
+        for (int x = 0; x < values.length; x++){
+            addHobby(values[x]);
+        }
+    }
+    public void printHobbies(){
+        for (int x = 0; x < hobbies.length; x++){
+            System.out.println(hobbies[x]);
+        }
+    }
+
+    /**public void printInfo(){
+     if (this.company == null){
+     System.out.println(firstName + " " + lastName +" is not linked to a company at the moment.");
+     }
+     else {
+     System.out.println(firstName + " " + lastName + " works for " + company.getName() +".");
+     }
+     System.out.println("Person Number is "+ personNumber);
+     }*/
+
+    @Override
+    public String toString() {
+        String output;
+        if (this.company == null){
+            output = StringUtils.capitalize(this.gender.getPersonalPronoun()) +" is not linked to a company at the moment.";
+        }
+        else {
+            output = StringUtils.capitalize(this.gender.getPersonalPronoun()) + " works for " + company.getName() +".";
+        }
+        output = StringUtils.capitalize(firstName)  + " " + StringUtils.capitalize(lastName)
+                + ": " + output + " "+ StringUtils.capitalize(this.gender.getPosessivePronoun())+ " ID is "+ personNumber;
+        return output;
+    }
+
+    @Override
+    public void teachCourse(Course course) {
+        System.out.println("teaching " + course.getTitle());
+    }
+
+    // Getters and setters
+
     public String[] getHobbies() {
         return hobbies;
     }
@@ -84,58 +141,4 @@ public class Person implements Instructor, CourseParticipant {
         Person.counter = counter;
     }
 
-
-
-    public void attendCourse(Course course){
-        System.out.println(firstName + " is attending a "+ course.getTitle() + " course.");
-    }
-
-    public void addHobby(String hobby){
-        String[] newHobbies = new String[hobbies.length+1];
-        for (int x = 0; x < hobbies.length; x++){
-            newHobbies[x] = hobbies[x];
-        }
-        newHobbies[hobbies.length] = hobby;
-        hobbies = newHobbies;
-    }
-
-    public void addHobbies(String... values){
-        for (int x = 0; x < values.length; x++){
-            addHobby(values[x]);
-        }
-    }
-    public void printHobbies(){
-        for (int x = 0; x < hobbies.length; x++){
-            System.out.println(hobbies[x]);
-        }
-    }
-
-    /**public void printInfo(){
-        if (this.company == null){
-            System.out.println(firstName + " " + lastName +" is not linked to a company at the moment.");
-        }
-        else {
-            System.out.println(firstName + " " + lastName + " works for " + company.getName() +".");
-        }
-        System.out.println("Person Number is "+ personNumber);
-    }*/
-
-    @Override
-    public String toString() {
-        String output;
-        if (this.company == null){
-           output = StringUtils.capitalize(this.gender.getPersonalPronoun()) +" is not linked to a company at the moment.";
-        }
-        else {
-            output = StringUtils.capitalize(this.gender.getPersonalPronoun()) + " works for " + company.getName() +".";
-        }
-        output = StringUtils.capitalize(firstName)  + " " + StringUtils.capitalize(lastName)
-                + ": " + output + " "+ StringUtils.capitalize(this.gender.getPosessivePronoun())+ " ID is "+ personNumber;
-        return output;
-    }
-
-    @Override
-    public void teachCourse(Course course) {
-        System.out.println("teaching " + course.getTitle());
-    }
 }
