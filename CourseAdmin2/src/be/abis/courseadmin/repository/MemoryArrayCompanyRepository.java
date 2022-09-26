@@ -1,5 +1,6 @@
 package be.abis.courseadmin.repository;
 
+import be.abis.courseadmin.exceptions.CompanyNotFoundException;
 import be.abis.courseadmin.model.Company;
 
 public class MemoryArrayCompanyRepository implements CompanyRepository {
@@ -16,23 +17,23 @@ public class MemoryArrayCompanyRepository implements CompanyRepository {
     }
 
     @Override
-    public Company findCompany(int id) {
+    public Company findCompany(int id) throws CompanyNotFoundException {
         for (Company c: companies){
             if (c.getCompanyNumber() == id){
                 return c;
             }
         }
-        return null;        // later with exception handling
+        throw new CompanyNotFoundException("This company does not exist.");
     }
 
     @Override
-    public Company findCompany(String name) {
+    public Company findCompany(String name) throws CompanyNotFoundException {
         for (Company c: companies){
             if (name.equals(c.getName())){
                 return c;
             }
         }
-        return null;
+        throw new CompanyNotFoundException("This company does not exist.");
     }
 
     @Override

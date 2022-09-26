@@ -1,5 +1,8 @@
 package be.abis.courseadmin.model;
 
+import be.abis.courseadmin.exceptions.PriceTooHighException;
+import be.abis.courseadmin.exceptions.PriceTooLowException;
+
 public class Company {
 
     private String name;
@@ -14,6 +17,19 @@ public class Company {
         this.name = name;
         this.companyNumber = companyNumber;
     }
+
+    // business methods
+
+    public double requestPriceOfferForCompanySession(Course c, int numOfParticipants) throws PriceTooHighException, PriceTooLowException {
+
+        CompanySession companySession1 = new CompanySession(c, numOfParticipants);
+
+        System.out.println(companySession1.calculatePrice());
+
+        return 0;
+    }
+
+    // getters and setters
 
     public int getCompanyNumber() {
         return companyNumber;

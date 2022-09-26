@@ -1,8 +1,17 @@
 package be.abis.courseadmin.model;
 
+import be.abis.courseadmin.exceptions.PriceTooHighException;
+import be.abis.courseadmin.exceptions.PriceTooLowException;
+
 public class CompanySession extends Session {
     private Company organiser;
     private int numOfParticipants = 0; // 0 means not known
+
+    public CompanySession(Course course, int numOfParticipants){
+        super();
+        setCourse(course);
+        this.numOfParticipants = numOfParticipants;
+    }
 
     public CompanySession(Company organiser, Course course, String startDate, Company location, Person instructor) {
         super(course, startDate, location, instructor);
@@ -36,7 +45,15 @@ public class CompanySession extends Session {
     }
 
     @Override
-    public double calculatePrice() {
-        return 650.0;
+    public double calculatePrice() throws PriceTooHighException, PriceTooLowException {
+
+        double totalPrice = numOfParticipants * getCourse().getPricePerDay() * getCourse().getNumOfDays();
+
+
+        if (totalPrice > 4000) throw new PriceTooHighException( totalPrice+ " is too much.");
+        else if (totalPrice < 200) { throw new PriceTooLowException(totalPrice + " is too low.");
+
+        }
+        return totalPrice;
     }
 }

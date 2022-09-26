@@ -16,6 +16,10 @@ public class Test {
             instructor.askForCoffeeFromFor(s, instructor);
         }
 
+        int arr[] = {1,2,3};
+        int s = 4;
+        System.out.println(s++);
+
     }
 
 

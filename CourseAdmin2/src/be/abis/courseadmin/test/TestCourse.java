@@ -1,6 +1,9 @@
 package be.abis.courseadmin.test;
 
 import be.abis.courseadmin.enums.Gender;
+import be.abis.courseadmin.exceptions.CompanyNotFoundException;
+import be.abis.courseadmin.exceptions.PriceException;
+import be.abis.courseadmin.exceptions.PriceTooHighException;
 import be.abis.courseadmin.model.*;
 import be.abis.courseadmin.repository.CompanyRepository;
 import be.abis.courseadmin.repository.MemoryArrayCompanyRepository;
@@ -12,15 +15,24 @@ public class TestCourse {
         CompanyRepository repository = new MemoryArrayCompanyRepository();
 
         Course course1 = new Course("java", 80, 50);
+        Course course2 = new Course("oop", 4, 5);
 
         System.out.println(course1);
         System.out.println(course1.calculateTotalPrice());
         System.out.println(course1.calculateTotalPrice(50));
 
-        Company company1 = repository.findCompany("Smals");
+        Company company1 = null;
+        Company company3 = null;
+        Company company4 = null;
+        try {
+            company1 = repository.findCompany("Smals");
+            company3 = repository.findCompany("IBM");
+            company4 = repository.findCompany("Google");
+        } catch (CompanyNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println(company1);
-        Company company3 = repository.findCompany("IBM");
-        Company company4 = repository.findCompany("Google");
+
 
         String[] hobbies1 = {"football", "iceskating"};
         String[] hobbies2 = {"football", "running"};
@@ -43,9 +55,14 @@ public class TestCourse {
 
         /** ------------------------------------------------------------*/
 
-        Company company2 = repository.findCompany("ABIS");
+        Company company2 = null;
+        try {
+            company2 = repository.findCompany("ABIS");
+        } catch (CompanyNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-        Course course2 = new Course("UML design", 7, 20);
+        //Course course2 = new Course("UML design", 7, 20);
 
         PublicSession publicSession = new PublicSession(course1, "08.09.2022", company2, person2);
         CompanySession companySession = new CompanySession(company1, course2, "08.10.2022", company2, person1);
@@ -67,12 +84,12 @@ public class TestCourse {
         Consultancy consultancy = new Consultancy();
         Service[] services = {publicSession, companySession, companySession2, consultancy};
 
-        for (Service s: services){
+        /** for (Service s: services){
             System.out.println(s.calculatePrice());
             if (s instanceof Session){
                 ((Session) s).printInfo();
             }
-        }
+        }*/
 
         /** ----------------------Exercise 5--------------------------------------*/
         System.out.println(company1);
@@ -89,10 +106,18 @@ public class TestCourse {
         String cap = "jana";
         System.out.println(StringUtils.capitalize(cap));
 
+        /** ----------------------Exceptions --------------------------------------*/
 
 
 
-
+        try{
+            System.out.println(company1.requestPriceOfferForCompanySession(course2,9));
+            repository.findCompany(7);
+        } catch (PriceException | CompanyNotFoundException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("finally entered");
+        }
 
 
     }
