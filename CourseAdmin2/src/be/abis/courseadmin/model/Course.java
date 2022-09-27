@@ -1,5 +1,9 @@
 package be.abis.courseadmin.model;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 public class Course {
     private String title;
     private int numOfDays;
@@ -25,6 +29,17 @@ public class Course {
     public double calculateTotalPrice(double discountPercentage){
         double totalPrice = numOfDays*pricePerDay;
         return totalPrice * (1-(discountPercentage/100));
+    }
+
+    public void printTotalPrice(){
+        double price = calculateTotalPrice();
+
+        Locale currentLoc = Locale.getDefault();
+        DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(currentLoc);
+        otherSymbols.setDecimalSeparator(',');
+        otherSymbols.setGroupingSeparator('.');
+        DecimalFormat df = new DecimalFormat("0.00", otherSymbols);
+        System.out.println(df.format(price));
     }
 
     @Override

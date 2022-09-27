@@ -26,8 +26,8 @@ public class MemoryListPersonRepository implements PersonRepository {
         Person claudia = new Person("Claudia", "Negrila", Gender.FEMALE,
                 new String[] {"bouldering"});
 
-        // add company
-        // jana.setCompany(companyRepository.findCompany("Smals"));
+        // jana.setCompany(companyReposit
+        // add companyory.findCompany("Smals"));
 
 
         // make all persons

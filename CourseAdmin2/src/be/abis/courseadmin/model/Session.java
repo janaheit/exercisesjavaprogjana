@@ -1,8 +1,13 @@
 package be.abis.courseadmin.model;
 
+import be.abis.courseadmin.util.DateUtils;
+
+import java.time.LocalDate;
+import java.util.Date;
+
 public abstract class Session extends Service {
     private Course course;
-    private String startDate;
+    private LocalDate startDate;
     private Company location;
     private Person instructor;
 
@@ -13,7 +18,7 @@ public abstract class Session extends Service {
     Session(Course course, String startDate, Company location, Person instructor){
         this();
         this.course = course;
-        this.startDate = startDate;
+        this.startDate = DateUtils.format(startDate);
         this.location = location;
         this.instructor = instructor;
     }
@@ -26,6 +31,10 @@ public abstract class Session extends Service {
                 + instructor.getFirstName() + " " + instructor.getLastName() + " of " + instructor.getCompany().getName());
     }
 
+    public void printStartDate(){
+        DateUtils.printDate(startDate);
+    }
+
     // getters and setters
 
     public Course getCourse() {
@@ -36,12 +45,12 @@ public abstract class Session extends Service {
         this.course = course;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
     public void setStartDate(String startDate) {
-        this.startDate = startDate;
+        this.startDate = DateUtils.format(startDate);
     }
 
     public Company getLocation() {

@@ -7,6 +7,7 @@ import be.abis.courseadmin.model.*;
 import be.abis.courseadmin.repository.CompanyRepository;
 import be.abis.courseadmin.repository.MemoryListCompanyRepository;
 import be.abis.courseadmin.service.AbisCompanyService;
+import be.abis.courseadmin.util.DateUtils;
 import be.abis.courseadmin.util.StringUtils;
 
 public class TestCourse {
@@ -64,9 +65,9 @@ public class TestCourse {
 
         //Course course2 = new Course("UML design", 7, 20);
 
-        PublicSession publicSession = new PublicSession(course1, "08.09.2022", company2, person2);
-        CompanySession companySession = new CompanySession(company1, course2, "08.10.2022", company2, person1);
-        CompanySession companySession2 = new CompanySession(company4, course2, "08.10.2022", company2, person3, 30);
+        PublicSession publicSession = new PublicSession(course1, "08/09/2022", company2, person2);
+        CompanySession companySession = new CompanySession(company1, course2, "08/10/2022", company2, person1);
+        CompanySession companySession2 = new CompanySession(company4, course2, "08/10/2022", company2, person3, 30);
 
         publicSession.printInfo();
         companySession.printInfo();
@@ -130,6 +131,10 @@ public class TestCourse {
         System.out.println(new AbisCompanyService().sortAllCompaniesByName());
         System.out.println(new AbisCompanyService().sortAllCompaniesByCompanyNumber());
 
+        /** ----------------------LocalDate --------------------------------------*/
 
+        PublicSession publicSession1 = new PublicSession(course1, "21/03/2022", company1, person1);
+        DateUtils.printDate(publicSession1.getStartDate());
+        publicSession1.getCourse().printTotalPrice();
     }
 }
