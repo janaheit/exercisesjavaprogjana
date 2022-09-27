@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemoryListCompanyRepository implements CompanyRepository {
-    private static MemoryListCompanyRepository repository = new MemoryListCompanyRepository();
+    private static final MemoryListCompanyRepository repository = new MemoryListCompanyRepository();
     private List<Company> companies = new ArrayList<>();
 
     private MemoryListCompanyRepository(){

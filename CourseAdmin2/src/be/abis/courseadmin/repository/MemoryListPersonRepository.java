@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MemoryListPersonRepository implements PersonRepository {
 
-    private static MemoryListPersonRepository repository = new MemoryListPersonRepository();
+    private static final MemoryListPersonRepository repository = new MemoryListPersonRepository();
     private List<Person> persons = new ArrayList<>();
 
     private MemoryListPersonRepository() {
