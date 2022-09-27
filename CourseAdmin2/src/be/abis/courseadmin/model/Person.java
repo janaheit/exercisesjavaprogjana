@@ -6,6 +6,7 @@ import be.abis.courseadmin.util.StringUtils;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 // SImon was here :D no html luckily
 // test
 
@@ -18,7 +19,7 @@ public class Person implements Instructor, CourseParticipant {
     private static int counter = 0;
     private int personNumber;
     private Gender gender;
-    private Set<String> hobbies = new HashSet<>();
+    private Set<String> hobbies = new TreeSet<>();
 
     public Person(){
     }

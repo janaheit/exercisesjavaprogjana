@@ -6,12 +6,13 @@ import be.abis.courseadmin.exceptions.PriceException;
 import be.abis.courseadmin.model.*;
 import be.abis.courseadmin.repository.CompanyRepository;
 import be.abis.courseadmin.repository.MemoryListCompanyRepository;
+import be.abis.courseadmin.service.AbisCompanyService;
 import be.abis.courseadmin.util.StringUtils;
 
 public class TestCourse {
     public static void main(String[] args) {
 
-        CompanyRepository repository = new MemoryListCompanyRepository();
+        CompanyRepository repository = MemoryListCompanyRepository.getInstance();
 
         Course course1 = new Course("java", 80, 50);
         Course course2 = new Course("oop", 4, 5);
@@ -124,7 +125,10 @@ public class TestCourse {
         person1.addHobby("skating");
         person1.printHobbies();
 
+        /** ----------------------Comparable and sorting --------------------------------------*/
 
+        System.out.println(new AbisCompanyService().sortAllCompaniesByName());
+        System.out.println(new AbisCompanyService().sortAllCompaniesByCompanyNumber());
 
 
     }

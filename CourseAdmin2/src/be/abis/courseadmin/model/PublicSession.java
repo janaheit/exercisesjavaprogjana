@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class PublicSession extends Session {
-    private CompanyRepository repository = new MemoryListCompanyRepository();
+    private CompanyRepository repository = MemoryListCompanyRepository.getInstance();
     private Company abis;     // so that ABIS is initialised once and not changeable
     private List<CourseParticipant> participants = new ArrayList<>();
 

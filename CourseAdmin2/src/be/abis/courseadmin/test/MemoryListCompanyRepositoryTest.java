@@ -14,7 +14,7 @@ class MemoryListCompanyRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        repo = new MemoryListCompanyRepository();
+        repo = MemoryListCompanyRepository.getInstance();
     }
 
     @Test

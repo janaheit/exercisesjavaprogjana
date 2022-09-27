@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MemoryListCompanyRepository implements CompanyRepository {
+    private static MemoryListCompanyRepository repository = new MemoryListCompanyRepository();
     private List<Company> companies = new ArrayList<>();
 
-    public MemoryListCompanyRepository(){
+    private MemoryListCompanyRepository(){
         companies.add(new Company("ABIS", 1));
         companies.add(new Company("Smals", 2));
         companies.add(new Company("Google", 3));
@@ -54,5 +55,9 @@ public class MemoryListCompanyRepository implements CompanyRepository {
 
     public List<Company> getCompanies() {
         return companies;
+    }
+
+    public static MemoryListCompanyRepository getInstance(){
+        return repository;
     }
 }

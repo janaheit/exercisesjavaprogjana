@@ -3,7 +3,9 @@ package be.abis.courseadmin.model;
 import be.abis.courseadmin.exceptions.PriceTooHighException;
 import be.abis.courseadmin.exceptions.PriceTooLowException;
 
-public class Company {
+import java.util.Comparator;
+
+public class Company implements Comparable<Company> {
 
     private String name;
     private int companyNumber;
@@ -32,6 +34,20 @@ public class Company {
     @Override
     public String toString() {
         return "This company is called " + name;
+    }
+
+    @Override
+    public int compareTo(Company o) {
+        return this.getName().compareTo(o.getName());
+    }
+
+    public static class ComparatorByCompanyNumber implements Comparator<Company> {
+
+        @Override
+        public int compare(Company o1, Company o2) {
+
+            return o1.getCompanyNumber() - o2.getCompanyNumber();
+        }
     }
 
     // getters and setters

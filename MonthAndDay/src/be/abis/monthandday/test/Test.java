@@ -19,7 +19,7 @@ public class Test {
         String month = scanner.next();
 
 
-        // calculate days till end of the month 
+        // calculate days till end of the month
         System.out.println("You have " + calculateDaysTillEndOfMonth(calendar, day, month) + " days left in "
         + month + ".");
 
