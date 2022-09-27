@@ -14,9 +14,12 @@ public class Test {
 
         System.out.println("Type day and month (letters) to find out how many days are still left in the month.");
 
+        // read input
         int day = scanner.nextInt();
         String month = scanner.next();
 
+
+        // calculate days till end of the month 
         System.out.println("You have " + calculateDaysTillEndOfMonth(calendar, day, month) + " days left in "
         + month + ".");
 
