@@ -20,7 +20,7 @@ public class TestCourse {
 
         System.out.println(course1);
         System.out.println(course1.calculateTotalPrice());
-        System.out.println(course1.calculateTotalPrice(50));
+        //System.out.println(course1.calculateTotalPrice(50));
 
         Company company1 = null;
         Company company3 = null;

@@ -1,5 +1,8 @@
 package be.abis.courseadmin.model;
 
+import be.abis.courseadmin.functions.Calculator;
+import be.abis.courseadmin.util.CalculatorUtils;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -26,9 +29,8 @@ public class Course {
         return numOfDays*pricePerDay;
     }
 
-    public double calculateTotalPrice(double discountPercentage){
-        double totalPrice = numOfDays*pricePerDay;
-        return totalPrice * (1-(discountPercentage/100));
+    public double calculateTotalPrice(double reduction){
+        return CalculatorUtils.callCalculator((red, tot) -> tot * (1-(red/100)), reduction, calculateTotalPrice());
     }
 
     public void printTotalPrice(){
