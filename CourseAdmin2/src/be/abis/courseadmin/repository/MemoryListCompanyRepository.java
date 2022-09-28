@@ -11,11 +11,11 @@ public class MemoryListCompanyRepository implements CompanyRepository {
     private List<Company> companies = new ArrayList<>();
 
     private MemoryListCompanyRepository(){
-        companies.add(new Company("ABIS", 1));
-        companies.add(new Company("Smals", 2));
-        companies.add(new Company("Google", 3));
-        companies.add(new Company("IBM", 4));
-        companies.add(new Company("Microsoft", 5));
+        companies.add(new Company("ABIS"));
+        companies.add(new Company("Smals"));
+        companies.add(new Company("Google"));
+        companies.add(new Company("IBM"));
+        companies.add(new Company("Microsoft"));
     }
 
     @Override

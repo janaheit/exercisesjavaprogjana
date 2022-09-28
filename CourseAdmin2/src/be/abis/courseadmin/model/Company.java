@@ -9,15 +9,18 @@ public class Company implements Comparable<Company> {
 
     private String name;
     private int companyNumber;
+    private static int COUNTER = 0;
 
     public Company(){
 
     }
 
-    public Company(String name, int companyNumber){
+    public Company(String name){
         this();
+        COUNTER+=1;
         this.name = name;
-        this.companyNumber = companyNumber;
+        this.companyNumber = COUNTER;
+
     }
 
     // business methods
@@ -33,7 +36,7 @@ public class Company implements Comparable<Company> {
 
     @Override
     public String toString() {
-        return "This company is called " + name;
+        return name + ": " + companyNumber;
     }
 
     @Override
@@ -68,6 +71,8 @@ public class Company implements Comparable<Company> {
         this.name = name;
     }
 
-
+    public static int getCOUNTER() {
+        return COUNTER;
+    }
 
 }
