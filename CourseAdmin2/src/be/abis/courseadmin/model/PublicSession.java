@@ -15,6 +15,9 @@ public class PublicSession extends Session {
     private List<CourseParticipant> participants = new ArrayList<>();
 
 
+    public PublicSession() {
+    }
+
     public PublicSession(Course course, String startDate, Company location, Person instructor) {
         super(course, startDate, location, instructor);
         try {
@@ -30,13 +33,16 @@ public class PublicSession extends Session {
         return 700.0;
     }
 
-    public void addEnrolment(CourseParticipant participant){
-        participants.add(participant);
+    public void addEnrolment(Person p){
+
+        participants.add(p);
     }
 
     public void addEnrolments(CourseParticipant ... participants){
         this.participants.addAll(Arrays.asList(participants));
     }
+
+
 
     public void cancelEnrolment(CourseParticipant courseParticipant){
         participants.remove(courseParticipant);
@@ -80,5 +86,11 @@ public class PublicSession extends Session {
         return abis;
     }
 
+    public List<CourseParticipant> getParticipants() {
+        return participants;
+    }
 
+    public void setParticipants(List<CourseParticipant> participants) {
+        this.participants = participants;
+    }
 }

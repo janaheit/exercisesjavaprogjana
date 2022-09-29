@@ -11,7 +11,7 @@ import java.util.TreeSet;
 // test
 
 /** This class represents a Person and describes a person's behaviour. */
-public class Person implements Instructor, CourseParticipant {
+public class Person implements Instructor, CourseParticipant, Comparable<CourseParticipant> {
 
     private String firstName;
     private String lastName;
@@ -130,4 +130,12 @@ public class Person implements Instructor, CourseParticipant {
         Person.counter = counter;
     }
 
+    public int getPersonNumber() {
+        return personNumber;
+    }
+
+    @Override
+    public int compareTo(CourseParticipant o) {
+        return this.personNumber-((Person)o).getPersonNumber();
+    }
 }

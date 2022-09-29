@@ -1,5 +1,7 @@
 package be.abis.courseadmin.service;
 
+import be.abis.courseadmin.exceptions.CourseNotFoundException;
+import be.abis.courseadmin.model.CourseParticipant;
 import be.abis.courseadmin.model.Person;
 
 import java.util.Collections;
@@ -8,25 +10,40 @@ import java.util.List;
 
 public class AbisEnrolmentService implements EnrolmentService{
 
+    private static final AbisEnrolmentService abisEnrolmentService = new AbisEnrolmentService();
 
+    private AbisEnrolmentService() {
+    }
 
     @Override
-    public List<Person> sortByFirstName(List<Person> persons) {
-        //  Collections.sort(persons, (p1, p2)-> p1.getFirstName().compareTo(p2.getFirstName()));
-        persons.sort(Comparator.comparing(Person::getFirstName));
+    public List<CourseParticipant> sortByFirstName(List<CourseParticipant> persons) {
+        //Collections.sort(persons, (p1, p2)-> p1.getFirstName().compareTo(p2.getFirstName()));
+        persons.sort(Comparator.comparing((p) -> ((Person)p).getFirstName()));
         return persons;
     }
 
     @Override
-    public List<Person> sortByLastName(List<Person> persons) {
-        persons.sort(Comparator.comparing(Person::getLastName));
+    public List<CourseParticipant> sortByLastName(List<CourseParticipant> persons) {
+        persons.sort(Comparator.comparing((p) -> ((Person)p).getLastName()));
         return persons;
     }
 
     @Override
-    public List<Person> sortByName(List<Person> persons) {
-        persons.sort(Comparator.comparing(p -> (p.getFirstName() + " " + p.getLastName())));
+    public List<CourseParticipant> sortByName(List<CourseParticipant> persons) {
+        persons.sort(Comparator.comparing((p) -> (((Person)p).getFirstName() + " "
+                + ((Person)p).getLastName())));
         return persons;
         //Collections.sort(persons, (p1, p2)-> (p1.getFirstName() + " " + p1.getLastName()).compareTo(p2.getFirstName()+" "+p2.getLastName()));
     }
+
+    @Override
+    public List<CourseParticipant> sortByPersonNumber(List<CourseParticipant> courseParticipants) {
+        Collections.sort(courseParticipants);
+        return courseParticipants;
+    }
+
+    public static AbisEnrolmentService getInstance(){
+        return abisEnrolmentService;
+    }
+
 }
