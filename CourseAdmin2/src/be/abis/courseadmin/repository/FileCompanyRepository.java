@@ -1,7 +1,10 @@
 package be.abis.courseadmin.repository;
 
+import be.abis.courseadmin.enums.CompanyFactoryType;
 import be.abis.courseadmin.exceptions.CompanyAlreadyExistsException;
 import be.abis.courseadmin.exceptions.CompanyNotFoundException;
+import be.abis.courseadmin.factory.CompanyFactory;
+import be.abis.courseadmin.factory.FileCompanyFactory;
 import be.abis.courseadmin.model.Company;
 
 import java.io.*;
@@ -15,29 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FileCompanyRepository implements CompanyRepository {
 
     private static final FileCompanyRepository fileCompanyRepo = new FileCompanyRepository();
-    private List<Company> companies = new ArrayList<>();
+    private CompanyFactory factory;
+    private List<Company> companies;
 
     private FileCompanyRepository(){
-        try {
-            List<String> names = Files.readAllLines(Paths.get("c:/temp/javacourses/companies.txt"));
-            System.out.println(names);
-            for (String n:names) {
-                System.out.println(n);
-
-            }
-            createCompanies(names);
-
-        } catch (IOException e) {
-            System.out.println("File couldn't be read.");
-        }
-    }
-
-    private void createCompanies(List<String> names){
-        for (int x=0; x<names.size();x++){
-            if(!names.get(x).equals("")) {
-                companies.add(new Company(names.get(x)));
-            }
-        }
+        this.factory = FileCompanyFactory.createFactory(CompanyFactoryType.FILE);
+        this.companies = factory.createCompanyList();
     }
 
     @Override
@@ -47,7 +33,7 @@ public class FileCompanyRepository implements CompanyRepository {
                 return c;
             }
         }
-        throw new CompanyNotFoundException("This company does not exist.");
+        throw new CompanyNotFoundException("Company ID " + id + " does not exist.");
     }
 
     @Override
@@ -57,22 +43,27 @@ public class FileCompanyRepository implements CompanyRepository {
                 return c;
             }
         }
-        throw new CompanyNotFoundException("This company does not exist.");
+        throw new CompanyNotFoundException("Company with the name " + name + " does not exist.");
     }
 
     @Override
     public void addCompany(Company company) throws IOException, CompanyAlreadyExistsException {
-        List<String> names = Files.readAllLines(Paths.get("c:/temp/javacourses/companies.txt"));
+        String home = System.getProperty("user.home");
+
+        List<String> names = Files.readAllLines(Paths.get(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companies.txt"));
+
         if(names.contains(company.getName())){
-            throw new CompanyAlreadyExistsException("Company already exists");
+            throw new CompanyAlreadyExistsException(company.getName() + " already exists and will therefore not be added. ");
         }
 
-        try (PrintWriter pw = new PrintWriter(new FileWriter("c:/temp/javacourses/companies.txt", true))){
+        File file = new java.io.File(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companies.txt");
+        try (PrintWriter pw = new PrintWriter(new FileWriter(file, true))){
             //bw.println("\n");
             pw.println(company.getName());
             companies.add(company);
         } catch (IOException e) {
-            System.out.println("Couldn't write to file!!!");
+            System.out.println(e.getMessage());
+            System.out.println(company.getName() +" was not added");
         }
     }
 
@@ -92,13 +83,15 @@ public class FileCompanyRepository implements CompanyRepository {
     }
 
     private void writeAllCompanies(){
-        try (PrintWriter pw = new PrintWriter(new FileWriter("c:/temp/javacourses/companies.txt"))){
+        String home = System.getProperty("user.home");
+        File file = new java.io.File(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companies.txt");
+        try (PrintWriter pw = new PrintWriter(new FileWriter(file))){
 
             for(Company c: this.companies){
                 pw.println(c.getName());
             }
         } catch (IOException e) {
-            System.out.println("IO Exception");
+            System.out.println(e.getMessage());
         }
     }
 

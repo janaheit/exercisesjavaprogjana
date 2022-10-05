@@ -1,6 +1,8 @@
 package be.abis.courseadmin.repository;
 
 import be.abis.courseadmin.exceptions.CompanyNotFoundException;
+import be.abis.courseadmin.factory.CompanyFactory;
+import be.abis.courseadmin.factory.MemoryListCompanyFactory;
 import be.abis.courseadmin.model.Company;
 
 import java.util.ArrayList;
@@ -8,14 +10,12 @@ import java.util.List;
 
 public class MemoryListCompanyRepository implements CompanyRepository {
     private static final MemoryListCompanyRepository repository = new MemoryListCompanyRepository();
-    private List<Company> companies = new ArrayList<>();
+    private CompanyFactory companyFactory;
+    private List<Company> companies;
 
     private MemoryListCompanyRepository(){
-        companies.add(new Company("ABIS"));
-        companies.add(new Company("Smals"));
-        companies.add(new Company("Google"));
-        companies.add(new Company("IBM"));
-        companies.add(new Company("Microsoft"));
+        this.companyFactory = MemoryListCompanyFactory.getInstance();
+        this.companies = this.companyFactory.createCompanyList();
     }
 
     @Override

@@ -34,17 +34,15 @@ public class FileCompanyFactory extends CompanyFactory {
 
             line = bf.readLine();
             while (line != null) {
-                if (!names.contains(line.trim())){
+                if (names.contains(line.trim())){
+                    System.out.println(line.trim() +" will not be added, since it already exists.");
+                } else if (!line.equals("")){
                     names.add(line.trim());
                     companies.add(new Company(line.trim()));
-                    line = bf.readLine();
-                } else {
-                    throw new CompanyAlreadyExistsException(line.trim() +" will not be added, since it already exists.");
                 }
-
+                line = bf.readLine();
             }
-
-        } catch (IOException | CompanyAlreadyExistsException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
