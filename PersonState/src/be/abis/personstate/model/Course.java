@@ -1,16 +1,24 @@
-package be.abis.persondecorators.model;
+package be.abis.personstate.model;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.List;
 import java.util.Locale;
 
 public class Course {
     private String title;
     private int numOfDays;
     private int pricePerDay;
+    private Person instructor;
+    private List<Person> students;
 
     public Course(){
 
+    }
+
+    public Course (String title){
+        this();
+        this.title = title;
     }
 
     public Course(String title, int numOfDays, int pricePerDay) {
@@ -69,4 +77,23 @@ public class Course {
         this.pricePerDay = pricePerDay;
     }
 
+    public Person getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Person instructor) {
+        this.instructor = instructor;
+    }
+
+    public List<Person> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Person> students) {
+        this.students = students;
+    }
+
+    public void addStudent(Person student){
+        this.students.add(student);
+    }
 }
