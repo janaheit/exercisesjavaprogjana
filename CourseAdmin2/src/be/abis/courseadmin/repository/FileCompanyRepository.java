@@ -30,7 +30,6 @@ public class FileCompanyRepository implements CompanyRepository {
         } catch (IOException e) {
             System.out.println("File couldn't be read.");
         }
-
     }
 
     private void createCompanies(List<String> names){

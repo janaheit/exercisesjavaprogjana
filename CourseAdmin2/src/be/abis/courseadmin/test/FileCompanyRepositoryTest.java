@@ -1,8 +1,9 @@
-package be.abis.courseadmin.repository;
+package be.abis.courseadmin.test;
 
 import be.abis.courseadmin.exceptions.CompanyAlreadyExistsException;
 import be.abis.courseadmin.exceptions.CompanyNotFoundException;
 import be.abis.courseadmin.model.Company;
+import be.abis.courseadmin.repository.FileCompanyRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
