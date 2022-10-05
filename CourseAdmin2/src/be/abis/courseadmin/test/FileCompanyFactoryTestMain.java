@@ -39,5 +39,8 @@ public class FileCompanyFactoryTestMain {
 
         System.out.println("---------------------------");
 
+        companyRepository.deleteCompany(3);
+        System.out.println(companyRepository.getCompanies());
+
     }
 }

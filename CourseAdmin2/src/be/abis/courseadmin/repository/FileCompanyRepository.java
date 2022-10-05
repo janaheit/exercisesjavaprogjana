@@ -57,8 +57,9 @@ public class FileCompanyRepository implements CompanyRepository {
         }
 
         File file = new java.io.File(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companies.txt");
+
         try (PrintWriter pw = new PrintWriter(new FileWriter(file, true))){
-            //bw.println("\n");
+            pw.println("\n");              // if this new line is not printed, everything works, but JunitTest fails
             pw.println(company.getName());
             companies.add(company);
         } catch (IOException e) {

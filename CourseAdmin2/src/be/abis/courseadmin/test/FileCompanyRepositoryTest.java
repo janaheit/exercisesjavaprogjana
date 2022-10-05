@@ -8,8 +8,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -25,14 +27,20 @@ class FileCompanyRepositoryTest {
         fileCompanyRepository = FileCompanyRepository.getInstance();
 
         // backup state of repository
-        Files.copy(Paths.get("c:/temp/javacourses/companies.txt"),
-                Paths.get("c:/temp/javacourses/companiesBackup.txt"), REPLACE_EXISTING);
+        String home = System.getProperty("user.home");
+
+        Files.copy(Paths.get(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companies.txt"),
+                Paths.get(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companiesBackup.txt"),
+                REPLACE_EXISTING);
     }
 
     @AfterEach
     void tearDown() throws IOException {
-        Files.copy(Paths.get("c:/temp/javacourses/companiesBackup.txt"),
-                Paths.get("c:/temp/javacourses/companies.txt"), REPLACE_EXISTING);
+        String home = System.getProperty("user.home");
+
+        Files.copy(Paths.get(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companiesBackup.txt"),
+                Paths.get(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companies.txt"),
+                REPLACE_EXISTING);
     }
 
 
@@ -43,7 +51,8 @@ class FileCompanyRepositoryTest {
         fileCompanyRepository.addCompany(newCompany);
         assertEquals(fileCompanyRepository.findCompany("Raiffeisen"), newCompany);
 
-        List<String> names = Files.readAllLines(Paths.get("c:/temp/javacourses/companies.txt"));
+        String home = System.getProperty("user.home");
+        List<String> names = Files.readAllLines(Paths.get(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companies.txt"));
         assertTrue(names.contains("Raiffeisen"));
     }
 
@@ -65,7 +74,8 @@ class FileCompanyRepositoryTest {
             fileCompanyRepository.findCompany(company.getCompanyNumber());
         });
 
-        List<String> names = Files.readAllLines(Paths.get("c:/temp/javacourses/companies.txt"));
+        String home = System.getProperty("user.home");
+        List<String> names = Files.readAllLines(Paths.get(home + "/Projects/TrainingAbis/Abis/FactoryFiles/companies.txt"));
         assertFalse(names.contains(company.getName()));
     }
 }

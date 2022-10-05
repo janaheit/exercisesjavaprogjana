@@ -49,18 +49,6 @@ public class FileCompanyFactory extends CompanyFactory {
         return companies;
     }
 
-
-    private void writeAllCompanies(List<Company> companies){
-        try(PrintWriter pw = new PrintWriter(new FileWriter("Users/jana/Projects/TrainingAbis/Abis/FactoryFiles/companies.txt"))){
-            // PrintWriter enables println()
-            for (Company c: companies){
-                pw.println(c.getName());
-            }
-        } catch (IOException e){
-            System.out.println("IO Exception! Could not write companies to file.");
-        }
-    }
-
     // GETTERS AND SETTERS
 
     public static FileCompanyFactory getInstance(){
