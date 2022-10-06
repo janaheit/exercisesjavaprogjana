@@ -12,5 +12,5 @@ public interface SessionRepository {
     void addSession(Session company);
     void updateSession(Session company);
     void deleteSession(Session session);
-    List<Session> getCompanies();
+    List<Session> getSessions();
 }

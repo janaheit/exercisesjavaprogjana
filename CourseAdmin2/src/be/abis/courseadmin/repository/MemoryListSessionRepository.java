@@ -57,7 +57,7 @@ public class MemoryListSessionRepository implements SessionRepository {
     }
 
     @Override
-    public List<Session> getCompanies() {
+    public List<Session> getSessions() {
         return null;
     }
 }

@@ -25,9 +25,18 @@ public class MemoryListPersonRepository implements PersonRepository {
                 new String[] {"crypto", "idk what else"});
         Person claudia = new Person("Claudia", "Negrila", Gender.FEMALE,
                 new String[] {"bouldering"});
+        Person p1 = new Person("Daniele", "Pisano", Gender.MALE);
+        Person p2 = new Person("Anton", "Müller", Gender.FEMALE);
+        Person p3 = new Person("Simone", "Kreuz", Gender.MALE);
+        Person p4 = new Person("Sam", "Porto", Gender.FEMALE);
+        Person p5 = new Person("Jule", "Schulz", Gender.FEMALE);
+        Person p6 = new Person("Tom", "Gret", Gender.MALE);
+        Person p7 = new Person("Tira", "Misu", Gender.FEMALE);
+        Person p8 = new Person("daö", "Misadu", Gender.FEMALE);
+        Person p9 = new Person("Tidadra", "Miadsu", Gender.FEMALE);
+        Person p10 = new Person("Tiadra", "Miadsu", Gender.FEMALE);
 
-        // jana.setCompany(companyReposit
-        // add companyory.findCompany("Smals"));
+
 
 
         // make all persons
@@ -35,7 +44,16 @@ public class MemoryListPersonRepository implements PersonRepository {
         persons.add(merlin);
         persons.add(simon);
         persons.add(claudia);
-
+        persons.add(p1);
+        persons.add(p2);
+        persons.add(p3);
+        persons.add(p4);
+        persons.add(p5);
+        persons.add(p6);
+        persons.add(p7);
+        persons.add(p8);
+        persons.add(p9);
+        persons.add(p10);
 
     }
 

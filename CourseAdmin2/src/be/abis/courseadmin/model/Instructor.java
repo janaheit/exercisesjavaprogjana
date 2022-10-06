@@ -1,5 +1,8 @@
 package be.abis.courseadmin.model;
 
-public interface Instructor {
+import be.abis.courseadmin.observer.SessionFullListener;
+
+public interface Instructor extends SessionFullListener {
     void teachCourse(Course course);
+
 }

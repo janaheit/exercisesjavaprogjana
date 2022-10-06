@@ -1,6 +1,7 @@
 package be.abis.courseadmin.model;
 
 import be.abis.courseadmin.enums.Gender;
+import be.abis.courseadmin.event.SessionFullEvent;
 import be.abis.courseadmin.util.StringUtils;
 
 import java.util.Arrays;
@@ -47,6 +48,12 @@ public class Person implements Instructor, CourseParticipant, Comparable<CourseP
 
     public void attendCourse(Course course){
         System.out.println(firstName + " is attending a "+ course.getTitle() + " course.");
+    }
+
+    @Override
+    public void confirm(SessionFullEvent event) {
+        System.out.println(event.getMessage());
+        System.out.println("I confirm that my session is full. I will not let anyone else participate.");
     }
 
     public void addHobby(String hobby){
@@ -138,4 +145,6 @@ public class Person implements Instructor, CourseParticipant, Comparable<CourseP
     public int compareTo(CourseParticipant o) {
         return this.personNumber-((Person)o).getPersonNumber();
     }
+
+
 }
